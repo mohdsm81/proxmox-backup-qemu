@@ -1,3 +1,9 @@
+proxmox-backup-qemu (2.0.2) trixie; urgency=medium
+
+  * update Proxmox Backup Server submodule to current master based on 4.1.1.
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 21 Jan 2026 20:53:20 +0100
+
 proxmox-backup-qemu (2.0.1) trixie; urgency=medium
 
   * restore: make chunk loading concurrent to increase restore bandwidth and
