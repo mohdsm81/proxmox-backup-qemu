@@ -1,3 +1,13 @@
+proxmox-backup-qemu (2.0.3) trixie; urgency=medium
+
+  * update Proxmox Backup Server submodule to current master based on 4.2.6
+
+  * fix UB in state buffer export/free pair
+
+  * fix typo and casing in error messages
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 16 Sep 2026 14:50:47 +0200
+
 proxmox-backup-qemu (2.0.2) trixie; urgency=medium
 
   * update Proxmox Backup Server submodule to current master based on 4.1.1.
