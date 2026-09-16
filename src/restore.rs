@@ -112,7 +112,7 @@ impl RestoreTask {
         )
         .await?;
 
-        let (manifest, _) = client.download_manifest().await?;
+        let (manifest, _) = client.download_manifest(false).await?;
         manifest.check_fingerprint(self.crypt_config.as_ref().map(Arc::as_ref))?;
 
         self.manifest

@@ -157,7 +157,7 @@ impl BackupTask {
             )
             .await?;
 
-            let last_manifest = writer.download_previous_manifest().await;
+            let last_manifest = writer.download_previous_manifest(true).await;
             let mut result = 0;
             if let Ok(last_manifest) = last_manifest {
                 result = 1;

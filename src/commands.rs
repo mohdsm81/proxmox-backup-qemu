@@ -109,10 +109,10 @@ pub(crate) async fn add_config(
         ..UploadOptions::default()
     };
 
+    let blob_name: BackupArchiveName = blob_name.parse()?;
     let stats = client
         .upload_blob_from_data(data, &blob_name, options)
         .await?;
-    let blob_name: BackupArchiveName = blob_name.parse()?;
 
     let mut guard = manifest.lock().unwrap();
     guard.add_file(&blob_name, stats.size, stats.csum, crypt_mode)?;
@@ -484,7 +484,7 @@ pub(crate) async fn finish_backup(
             ..UploadOptions::default()
         };
         let stats = client
-            .upload_blob_from_data(rsa_encrypted_key, &target.to_string(), options)
+            .upload_blob_from_data(rsa_encrypted_key, &target, options)
             .await?;
         manifest
             .lock()
@@ -518,11 +518,7 @@ pub(crate) async fn finish_backup(
     };
 
     client
-        .upload_blob_from_data(
-            manifest.into_bytes(),
-            &MANIFEST_BLOB_NAME.to_string(),
-            options,
-        )
+        .upload_blob_from_data(manifest.into_bytes(), &MANIFEST_BLOB_NAME, options)
         .await?;
 
     client.finish().await?;
